@@ -1,0 +1,40 @@
+Approach 1: missing = (sum of numbers 0 to N) - (sum of array)
+
+sumWithoutMissing = N * (N + 1) / 2
+// if you don't recognize the above formula
+// just use a loop to add all numbers from 1 -> N
+// to get sumWithoutMissing
+
+sumWithMissing = 0
+for i = 0 to N-1
+  sumWithMissing += A[i]
+return (sumWithoutMissing - sumWithMissing)
+
+===
+
+Approach 2: use a boolean array E[0..N] to store
+whether a number exists in the original array A
+E[i] = false => i does not exist in the original array
+E[i] = true => i exists in the original array
+
+E = array of N+1 elements
+// initialization
+for i = 0 to N
+  E[i] = false
+for i = 0 to N-1
+  E[A[i]] = true
+  // A[i] exists, so set E[A[i]] to true
+for i = 0 to N
+  if !E[i]
+    return i
+
+// What if the range of values is not [0, N]
+// but something like [S, S+N]?
+// for example, instead of [0, 1000000] (zero to 1 million)
+// it is [1000000000, 1001000000] (1 billion to 1 billion and 1 million)
+
+// if you create an array E of 1 billion and 1 million elements
+// it will take a lot of memory
+
+// the idea we use in this solution is called "hashing"
+// that is, the location of an element is calculated based on its value

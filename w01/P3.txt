@@ -1,0 +1,19 @@
+set1 = new Set()
+
+while e = seq1.next()
+  set1.add(e)
+
+while e = seq2.next()
+  oldSize = set1.size()
+  set1.remove(e)
+  newSize = set1.size()
+  if oldSize == oldSize
+    // size does not change => removal is not successful
+    // in other words, e exists in seq2 but not seq1
+    return "NO"
+
+if set1.size() > 0
+  // set is not empty => some elements exist in seq1 but not seq2
+  return "NO"
+
+return "YES"

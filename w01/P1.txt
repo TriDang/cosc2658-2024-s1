@@ -1,0 +1,52 @@
+1.1/ Find the largest number in an array
+
+input: array A[0..N-1]
+output: the largest number in A
+assumption: all elements are unique
+
+largest = A[0]
+for i = 1 to N-1
+  if largest < A[i]
+    largest = A[i]
+return largest
+
+// alternative version: find the location of the largest number
+// => useful if the "number" is an object with many attributes
+// and the value we use for comparison is just one attribute
+
+largestIdx = 0
+for i = 1 to N-1
+  if A[largestIdx] < A[i]
+    largestIdx = i
+return largestIdx
+
+
+1.2/ Find the 2nd-largest number in an array
+
+input: array A[0..N-1]
+output: the 2nd-largest number in A
+assumption: all elements are unique, N >= 2
+
+if A[0] > A[1]
+  largest = A[0]
+  second = A[1]
+else
+  largest = A[1]
+  second = A[0]
+
+for i = 2 to N-1
+  if largest < A[i]
+    second = largest
+    largest = A[i]
+  else if second < A[i]
+    second = A[i]
+
+return second
+
+// can you modify the above code
+// to return the index of the second-largest number?
+
+// second approach:
+// find the largest number
+// exchange the largest number with A[N-1] (the last element)
+// find the largest number from 0 to N-2 only => it is the 2nd-largest number

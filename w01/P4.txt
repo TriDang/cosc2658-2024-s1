@@ -1,0 +1,25 @@
+// define sum[i] = A[0] + A[1] + ... + A[i]
+// we have:
+// sum[R] = A[0] + A[1] + ... + A[L-1] + A[L] + ... + A[R]
+// and:
+// sum[L-1] = A[0] + A[1] + ... + A[L-1]
+// as a result:
+// sum[R] - sum[L-1] = A[L] + A[L+1] + ... + A[R]
+// the expression on the RHS above is the sum of the range (L -> R)
+
+// also, we have:
+// sum[i] = A[0] + A[1] + ... + A[i-2] + A[i-1] + A[i]
+// => sum[i] = sum[i-1] + A[i]
+// so, we can calculate all sum[i] based on sum[i-1]
+
+// pre-calculation step
+sum[0] = A[0]
+for i = 1 to N-1
+  sum[i] = sum[i-1] + A[i]
+
+// query answering step:
+// only one operation needed to answer each query (L- > R)
+return sum[R] - sum[L-1]
+
+// need to check the case where L = 0
+// return sum[R] in that case
