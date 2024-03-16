@@ -1,0 +1,42 @@
+// Approach: there are two types of events: arrival and departure
+// When we scan the events from earliest to latest,
+// if we encounter an arrival event => increase the gates required
+// if we encounter a departure event => decrease the gates required
+// during this process: need to keep track of the maximum value of gates required
+
+arrival[0..N-1]
+departure[0..N-1]
+
+// the Event ADT consists of two attribute: time and type
+// time is a point in time
+// type can be either "Arrival" or "Departure"
+
+events = Event[0..2*N-1]
+
+for i = 0 to N-1
+  events[i].time = arrival[i]
+  events[i].type = "Arrival"
+
+  events[N+i].time = departure[i]
+  events[N+i].type = "Departure"
+
+// => complexity: O(N)
+
+// sort the events array based on the "time" attribute
+sort(events)
+
+// => complexity: O(2N*lg(2N)) = O(N*lg(N))
+
+largest = gates = 0
+for i = 0 to (2*N - 1)
+  if events[i].type == "Arrival"
+    gates++
+  else
+    gates--
+  largest = max(largest, gates)
+
+// => complexity: O(N)
+
+return largest
+
+// Final complexity: O(N) + O(N*lg(N)) + O(N) = O(N*lg(N))

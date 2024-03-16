@@ -1,0 +1,38 @@
+// Approach 1: brute force
+// Idea: for each element, display it only if there is NO
+// preceding element equals to it
+
+for i = 0 to N-1
+  found = false
+  for j = 0 to i-1
+    if A[j] == A[i]
+	    found = true
+      break
+  if !found
+    print A[i]
+
+Complexity analysis:
+  The inner loop executes at most i times for each outer iteration
+  i ranges from 0 to N-1
+  => The total execution times of the inner loop: T(N) = 1 + 2 + ... + N
+  T(N) = N*(N+1)/2
+  Remove the less significant components and multiplicative constants, we have
+  T(N) = O(N^2)
+
+
+// Approach 2: sort then search
+// Idea: after sorting, for each element, we only need to do ONE comparison
+// to the immediately preceding element
+// Assumption: complexity of sorting O(N*lg(N))
+
+sort(A)
+print A[0]
+for i = 1 to N-1
+  if A[i] != A[i-1]
+    print A[i]
+
+Complexity analysis:
+  The maximum number of statements executed in the for loop: 2 (comparison and printing)
+  There are N iterations
+  => Complexity of the for loop O(N)
+  Final complexity: O(N*lg(N)) + O(N) = O(N*lg(N))
