@@ -50,18 +50,6 @@ public class StudentBST {
     return node;
   }
 
-  
-  public Student nextStudentEasy(Student student) {
-    StudentNode node = getStudentNode(student);
-
-    // go to the left-most child of the right sub-tree
-    StudentNode child = node.right;
-    while (child.left != null) {
-      child = child.left;
-    }
-    return child.data;
-  }
-
   // nextStudent complexity = O(lg(N))
   // you can also use in-order traversal to create
   // an array of students in the ascending order of GPA
