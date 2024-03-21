@@ -42,7 +42,7 @@ public class StackSimulation {
         break;
       }
     }
-    // "start" is the first index where (target[start] != enteredRooms[start])
+    // "start" is the first index where (targetStack[start] != currentStack[start])
     // so, the remaining elements of both array start from "start"
     return (targetStack.length - start) + (currentStack.length - start);
   }
