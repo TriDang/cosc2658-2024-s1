@@ -1,0 +1,43 @@
+The number of times an operation executes is given
+on the right of the respective one
+
+int intSquareRoot(int N)
+  distance = INFINITY                  {1}
+  answer = 1                           {1}
+  for i from 1 to N                    {N}
+    if (abs(i * i - N) < distance)     {N}
+      answer = i                       {N}
+      distance = abs(i * i - N)        {N}
+return answer                          {1}
+
+Total execution times: 1 + 1 + N + N + N + N + 1 = 4N + 3
+Remove the insignificant component and multiplicative
+constant, we have the asymptotic complexity O(N)
+
+=======
+Proposal
+
+Because N >= 1, the square root of N is in the range [1, N]
+We can use binary search to find the answer
+Pick the middle value of the current range as the possible answer,
+check if the possible answer is too small or too large
+- if too small => use the right-half range
+- if too large => use the left-half range
+Each time, the range is reduce 2 times
+After lgN times, the range width is 1, which is the answer
+
+int intSquareRoot2(int N)
+  left = 1                          {1}
+  right = N                         {1}
+  while left < right                {lg(N)}
+    mid = (left + right) / 2        {lg(N)}
+    square = mid * mid              {lg(N)}
+    if (square == N)                {lg(N)}
+      return square                 {1}
+    if (square < N)                 {lg(N)}
+      // too small
+      left = mid + 1                {lg(N)}
+    else
+      // too large
+      right = mid - 1               {lg(N)}
+  return left                       {1}
