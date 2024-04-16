@@ -1,15 +1,17 @@
 package w04;
 
 public class BinaryTreeNode<T extends Comparable<T>> {
-  T data = null;
-  BinaryTreeNode<T> parent = null;
-  BinaryTreeNode<T> left = null;
-  BinaryTreeNode<T> right = null;
+  public T data = null;
+  public BinaryTreeNode<T> parent = null;
+  public BinaryTreeNode<T> left = null;
+  public BinaryTreeNode<T> right = null;
+  public int subtreeNodes;
   int height;
 
   public BinaryTreeNode(BinaryTreeNode<T> parent, T data) {
     this.parent = parent;
     this.data = data;
+    subtreeNodes = 1;
     height = 0;
   }
 
